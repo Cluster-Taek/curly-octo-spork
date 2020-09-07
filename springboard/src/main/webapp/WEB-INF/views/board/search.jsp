@@ -40,16 +40,23 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	
+
+	<div style="text-align: left;">
+		<form method="post">
+			<label>제목</label>
+			<input style="border: none; border-bottom: 1px solid #dddddd;" id="keyword" type="text" name="keyword"/>
+		<button type="button" onclick="location.href='/board/search?bno=${view.bno}&&keyword?=$('#keyword').value()">검색</button>	
+	</form>
+	</div>
 	<div style=" text-align: center;">
 		<c:if test="${page.prev}">
-			<span>[ <a href="/board/listPage?num=${page.startPageNum - 1}">이전</a> ]</span>
+			<span>[ <a href="/board/search?num=${page.startPageNum - 1}">이전</a> ]</span>
 		</c:if>
 	
 		<c:forEach begin="${page.startPageNum}" end="${page.endPageNum}" var="num">
 			<span>
 			 	<c:if test="${select != num}">
-			   		<a href="/board/listPage?num=${num}">${num}</a>
+			   		<a href="/board/search?num=${num}">${num}</a>
 			  	</c:if>    
 			  
 			  	<c:if test="${select == num}">
@@ -59,7 +66,7 @@
 		</c:forEach>
 	
 		<c:if test="${page.next}">
-			<span>[ <a href="/board/listPage?num=${page.endPageNum + 1}">다음</a> ]</span>
+			<span>[ <a href="/board/search?num=${page.endPageNum + 1}">다음</a> ]</span>
 		</c:if>
 	</div>
 	

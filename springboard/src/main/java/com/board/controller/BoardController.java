@@ -81,7 +81,7 @@ public class BoardController {
 		page.setNum(num);
 		page.setCount(service.count());  
 
-		List<Board> list = null; 
+		List<Object> list = null; 
 		list = service.listPage(page.getDisplayPost(), page.getPostNum());
 
 		model.addAttribute("list", list);   
@@ -90,5 +90,23 @@ public class BoardController {
 
 		model.addAttribute("select", num);
 	}
+	
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	public void getSearch(Model model, @RequestParam("num") int num, @RequestParam("keyword") String keyword) throws Exception {
+		Page page = new Page();
+		
+		page.setNum(num);
+		page.setCount(service.count());  
+
+		List<Object> list = null; 
+		list = service.search(page.getDisplayPost(), page.getPostNum(), keyword);
+
+		model.addAttribute("list", list);   
+		
+		model.addAttribute("page", page);
+
+		model.addAttribute("select", num);
+	}
+	
 
 }
